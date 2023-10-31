@@ -3,11 +3,12 @@ package br.com.diabem.appDiabemBackend.controllers;
 import br.com.diabem.appDiabemBackend.models.UserModel;
 import br.com.diabem.appDiabemBackend.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
+@CrossOrigin("http://localhost:5173/")
 public class UserController {
 
     @Autowired
@@ -18,4 +19,8 @@ public class UserController {
         return userRepository.save(createUser);
     }
 
+    @GetMapping("/glucose-results")
+    List<UserModel> getAllResults() {
+        return userRepository.findAll();
+    }
 }
