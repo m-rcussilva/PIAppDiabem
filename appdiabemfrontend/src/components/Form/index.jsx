@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import styles from "./Form.module.css"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
+import { parseISO, format } from "date-fns"
 
 function Form() {
     let navigate = useNavigate()
@@ -15,6 +16,8 @@ function Form() {
         hour: "",
         glicose: ""
     })
+
+    const [submittedUser, setSubmittedUser] = useState(null)
 
     const { name, age, weight, height, date, hour, glicose } = user
 
@@ -32,10 +35,12 @@ function Form() {
             age: parseInt(age),
             weight: parseFloat(weight),
             height: parseFloat(height),
-            // date,
-            // hour,
-            glucose: parseFloat(glicose)
+            date: date ? format(parseISO(date), "yyyy-MM-dd") : null,
+            hour: hour,
+            glicose: parseFloat(glicose)
         }
+
+        setSubmittedUser(userToCreate)
 
         await axios.post("http://localhost:8080/createuser", userToCreate)
         navigate("/oldresults")
@@ -57,7 +62,7 @@ function Form() {
                             onChange={(e) => generateReport(e)}
                         />
                         <input
-                            type="text"
+                            type="number"
                             placeholder="Idade"
                             className={styles.FormInput}
                             name="age"
@@ -65,7 +70,7 @@ function Form() {
                             onChange={(e) => generateReport(e)}
                         />
                         <input
-                            type="text"
+                            type="number"
                             placeholder="Peso (kg)"
                             className={styles.FormInput}
                             name="weight"
@@ -73,7 +78,7 @@ function Form() {
                             onChange={(e) => generateReport(e)}
                         />
                         <input
-                            type="text"
+                            type="number"
                             placeholder="Altura (cm)"
                             className={styles.FormInput}
                             name="height"
@@ -86,7 +91,7 @@ function Form() {
                         <p>Glicemia</p>
 
                         <input
-                            type="text"
+                            type="date"
                             placeholder="Data"
                             className={styles.FormInput}
                             name="date"
@@ -94,7 +99,7 @@ function Form() {
                             onChange={(e) => generateReport(e)}
                         />
                         <input
-                            type="text"
+                            type="time"
                             placeholder="Hora"
                             className={styles.FormInput}
                             name="hour"
@@ -102,8 +107,8 @@ function Form() {
                             onChange={(e) => generateReport(e)}
                         />
                         <input
-                            type="text"
-                            placeholder="Glicemia"
+                            type="number"
+                            placeholder="Glicose"
                             className={styles.FormInput}
                             name="glicose"
                             value={glicose}
@@ -114,6 +119,28 @@ function Form() {
                     </div>
                 </div>
             </form>
+
+            {submittedUser && (
+                <div>
+                    <h2>Dados submetidos:</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Campo</th>
+                                <th>Valor</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {Object.keys(submittedUser).map((key) => (
+                                <tr key={key}>
+                                    <td>{key}</td>
+                                    <td>{submittedUser[key]}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            )}
         </div>
     )
 }
