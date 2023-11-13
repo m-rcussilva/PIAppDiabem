@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react"
 import styles from "./Form.module.css"
 import axios from "axios"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { parseISO, format } from "date-fns"
+import Chart from "react-google-charts"
 
 function Form() {
-    let navigate = useNavigate()
-
     const [user, setUser] = useState({
         name: "",
         age: "",
@@ -21,8 +20,6 @@ function Form() {
 
     const { name, age, weight, height, date, hour, glicose } = user
 
-    // Atualiza o estado de um obj 'user'
-    // O spread opeartor '...' cria um cópia do obj
     const generateReport = (e) => {
         setUser({ ...user, [e.target.name]: e.target.value })
     }
@@ -30,20 +27,27 @@ function Form() {
     const onSubmit = async (e) => {
         e.preventDefault()
 
-        const userToCreate = {
-            name,
-            age: parseInt(age),
-            weight: parseFloat(weight),
-            height: parseFloat(height),
-            date: date ? format(parseISO(date), "yyyy-MM-dd") : null,
-            hour: hour,
-            glicose: parseFloat(glicose)
+        try {
+            const userToCreate = {
+                name,
+                age: parseInt(age),
+                weight: parseFloat(weight),
+                height: parseFloat(height),
+                date: date ? format(parseISO(date), "dd/MM/yyyy") : null,
+                hour: hour,
+                glicose: parseFloat(glicose)
+            }
+
+            setSubmittedUser(userToCreate)
+
+            await axios.post("http://localhost:8080/createuser", userToCreate)
+        } catch (error) {
+            console.error("Erro na requisição:", error)
+
+            if (error.response) {
+                console.log("Resposta de erro:", error.response.data)
+            }
         }
-
-        setSubmittedUser(userToCreate)
-
-        await axios.post("http://localhost:8080/createuser", userToCreate)
-        navigate("/oldresults")
     }
 
     return (
@@ -120,27 +124,50 @@ function Form() {
                 </div>
             </form>
 
+            <div>
+                <h3>
+                    O{" "}
+                    <span className={styles.GraficNameStyle}>
+                        Gráfico de Nível de Açucar no Sangue
+                    </span>{" "}
+                    será mostrado aqui em baixo após você submeter os dados:
+                </h3>
+            </div>
+
             {submittedUser && (
                 <div>
-                    <h2>Dados submetidos:</h2>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Campo</th>
-                                <th>Valor</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {Object.keys(submittedUser).map((key) => (
-                                <tr key={key}>
-                                    <td>{key}</td>
-                                    <td>{submittedUser[key]}</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+                    <h2>Gráfico de Nível de Açucar no Sangue:</h2>
+                    <Chart
+                        width={"100%"}
+                        height={"400px"}
+                        chartType="ColumnChart"
+                        loader={<div>Loading Chart</div>}
+                        data={[
+                            ["Categoria", "Valor"],
+                            ["Idade", submittedUser.age],
+                            ["Glicose", submittedUser.glicose]
+                        ]}
+                        options={{
+                            title: "Idade e Glicose",
+                            chartArea: { width: "50%" },
+                            hAxis: {
+                                title: "Valor",
+                                minValue: 0
+                            },
+                            vAxis: {
+                                title: "Categoria"
+                            }
+                        }}
+                    />
                 </div>
             )}
+
+            <h4>
+                Ir para:{" "}
+                <Link to={"/oldresults"}>
+                    Histórico de Resultados Anteriores
+                </Link>
+            </h4>
         </div>
     )
 }
