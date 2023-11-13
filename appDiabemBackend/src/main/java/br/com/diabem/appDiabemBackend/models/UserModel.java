@@ -1,5 +1,6 @@
 package br.com.diabem.appDiabemBackend.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -17,6 +18,7 @@ public class UserModel {
     private Integer age;
     private Double weight;
     private Double height;
+    @JsonFormat(pattern = "dd/MM/yyyy")
     private LocalDate date;
     private LocalTime hour;
     @Column(nullable = false)
