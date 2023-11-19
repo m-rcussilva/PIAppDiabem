@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import styles from "./OldResults.module.css"
 import axios from "axios"
 import { Link } from "react-router-dom"
+import { MdArrowBackIos } from "react-icons/md"
 
 function OldResults() {
     const [user, setUser] = useState([])
@@ -49,7 +50,9 @@ function OldResults() {
             </table>
 
             <div>
-                <Link to="/">Voltar</Link>
+                <Link to="/" className={styles.BackToHomePageButton}>
+                    Voltar
+                </Link>
             </div>
         </div>
     )

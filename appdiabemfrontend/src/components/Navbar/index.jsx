@@ -1,8 +1,9 @@
 import styles from "./Navbar.module.css"
+import { GiHealthNormal } from "react-icons/gi"
 
 function Navbar() {
     return (
-        <nav>
+        <nav className={styles.Navbar}>
             <h3 className={styles.NavTitle}>DiaBem</h3>
         </nav>
     )
