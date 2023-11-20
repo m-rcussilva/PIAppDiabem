@@ -28,3 +28,17 @@
 .GraficNameStyle {
     color: #0071e3;
 }
+
+.SubmitButton {
+    width: 400px;
+    font-size: 1.2em;
+    padding: 8px;
+    background-color: #1993d0;
+    border: none;
+    outline: 0;
+    color: #fff;
+    border-radius: 4px;
+}
+.SubmitButton:hover {
+    background-color: #53afdc;
+}
