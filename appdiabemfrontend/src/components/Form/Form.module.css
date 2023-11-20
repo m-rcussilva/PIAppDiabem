@@ -28,3 +28,51 @@
 .GraphNameStyle {
     color: #0071e3;
 }
+
+.SubmitButton {
+    width: 400px;
+    font-size: 1.2em;
+    padding: 8px;
+    background-color: #1993d0;
+    border: none;
+    outline: 0;
+    color: #fff;
+    border-radius: 4px;
+}
+.SubmitButton:hover {
+    background-color: #53afdc;
+}
+@media only screen and (max-width: 968px) {
+    .FormContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .FormLeft,
+    .FormRight {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 534px) {
+    .FormInput[type="text"] {
+        width: 300px;
+    }
+
+    .FormInput[type="number"] {
+        width: 300px;
+    }
+
+    .FormInput[type="date"] {
+        width: 300px;
+    }
+
+    .FormInput[type="time"] {
+        width: 300px;
+    }
+
+    .SubmitButton[type="submit"] {
+        width: 300px;
+    }
+}

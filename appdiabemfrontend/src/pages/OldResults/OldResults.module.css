@@ -2,6 +2,13 @@
     width: 100%;
     border-collapse: collapse;
 }
+.OldResultsTable thead tr {
+    background-color: #e0f0f9;
+}
+
+.OldResultsTable tr:nth-child(even) {
+    background-color: #e0f0f9;
+}
 
 .Tablecell {
     text-align: center;
