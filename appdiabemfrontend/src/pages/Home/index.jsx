@@ -1,5 +1,5 @@
 import Form from "../../components/Form"
-import GlucoseAverage from "../../components/GlucoseAverage"
+import GlucoseReferenceValues from "../../components/GlucoseReferenceValues"
 import Header from "../../components/Header"
 import Navbar from "../../components/Navbar"
 
@@ -9,7 +9,7 @@ function Home() {
             <Navbar />
             <Header />
             <Form />
-            <GlucoseAverage />
+            <GlucoseReferenceValues />
         </div>
     )
 }

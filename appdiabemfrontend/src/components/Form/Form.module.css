@@ -20,12 +20,12 @@
 
 .FormInput {
     margin-bottom: 18px;
-    width: 100%;
     font-size: 1.2em;
     padding: 8px;
+    width: 400px;
 }
 
-.GraficNameStyle {
+.GraphNameStyle {
     color: #0071e3;
 }
 

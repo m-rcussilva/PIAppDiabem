@@ -119,7 +119,9 @@ function Form() {
                             onChange={(e) => generateReport(e)}
                         />
 
-                        <button type="submit">Gerar relatórios</button>
+                        <button type="submit" className={styles.SubmitButton}>
+                            Gerar relatórios
+                        </button>
                     </div>
                 </div>
             </form>
@@ -127,7 +129,7 @@ function Form() {
             <div>
                 <h3>
                     O{" "}
-                    <span className={styles.GraficNameStyle}>
+                    <span className={styles.GraphNameStyle}>
                         Gráfico de Nível de Açucar no Sangue
                     </span>{" "}
                     será mostrado aqui em baixo após você submeter os dados:

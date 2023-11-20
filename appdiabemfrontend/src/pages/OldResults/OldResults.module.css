@@ -1,5 +1,6 @@
 .OldResultsTable {
     width: 100%;
+    border-collapse: collapse;
 }
 .OldResultsTable thead tr {
     background-color: #e0f0f9;
