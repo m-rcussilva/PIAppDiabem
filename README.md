@@ -61,11 +61,13 @@ que está dentro da pasta _resources_. Ele é o responsável por fazer a conexã
 com o banco de dados MySQL. Substitua o nome do banco de dados, nome de usuário
 e senha pelos valores reais do seu banco de dados:
 
-spring.datasource.url=jdbc:mysql://${MYSQL_HOST:localhost}:3306/nome_do_banco_de_dados
-spring.datasource.username=nome_de_usuario
-spring.datasource.password=sua_senha
-spring.jpa.hibernate.ddl-auto=update
+```
+spring.datasource.url=jdbc:mysql://${MYSQL_HOST:localhost}:3306/nome_do_banco_de_dados  
+spring.datasource.username=nome_de_usuario  
+spring.datasource.password=sua_senha  
+spring.jpa.hibernate.ddl-auto=update  
 spring.jpa.show-sql=true
+```
 
 Após fazer isso, inicie seu server MySQL e, logo após ter salvo as
 configurações realizados no arquivo application.properties, inicie o server
