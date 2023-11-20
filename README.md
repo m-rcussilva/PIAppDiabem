@@ -14,7 +14,7 @@ Clique no botão `<> Code` escolha entre as opções `HTTPS` ou `SSH`, em seguid
 copie o link do repositório e, dentro do seu temrinal, rode o comando abaixo:
 
 ```bash
-$ git clone https://github.com/m-rcussilva/piAppDiabem
+git clone https://github.com/m-rcussilva/piAppDiabem
 ```
 
 Opção 2:
