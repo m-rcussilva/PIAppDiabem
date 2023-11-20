@@ -33,7 +33,7 @@ Como um terminal aberto e que esteja dentro da pasta _appdiabemfrontend_,
 instale as dependências do projeto com o comando abaixo:
 
 ```bash
-$ npm install
+npm install
 ```
 
 Agora, para ver a aplição DiaBem no seu browser, porém, ainda sem funcionar, no
@@ -41,7 +41,7 @@ seu temrinal, e também, que esteja dentro da pasta _appdiabemfrontend_, rode
 o comando:
 
 ```bash
-$ npm run dev
+npm run dev
 ```
 
 Etapa 2:
