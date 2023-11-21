@@ -51,14 +51,8 @@ function OldResults() {
 
             <div>
                 <Link to="/" className={styles.BackToHomePageButton}>
-                <MdArrowBackIos /> <span>Cristiano</span>
-
-                .BackToHomePageButton {
-                    display: flex;
-                    align-items: center;
-                    margin-top: 20px;
-                }
-                                </Link>
+                    <MdArrowBackIos /> <span>Voltar</span>
+                </Link>
             </div>
         </div>
     )
