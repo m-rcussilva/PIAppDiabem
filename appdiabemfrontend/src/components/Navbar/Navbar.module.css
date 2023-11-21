@@ -1,0 +1,12 @@
+.Navbar {
+    display: flex;
+    align-items: center;
+}
+
+.NavTitle {
+    font-size: 1.5em;
+}
+
+.NavTitle {
+    margin-left: 10px;
+}
